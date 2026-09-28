@@ -1,59 +1,47 @@
-import logoFooter from "../assets/logo-footer.svg";
-import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import logoFooter from '../assets/logo-footer.svg';
+import { FaGithub, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 const Footer = () => {
+  const handleGoHome = () => {
+    window.scrollTo({top: 0,  behavior: 'smooth'});
+  };
   return (
-    <footer className="bg-[#111] text-white px-6 md:px-20 py-10">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-
-        <div>
-          <img src={logoFooter} alt="Drip Store Logo" className="h-8 mb-4" />
-          <p className="text-sm text-gray-400 mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
-          </p>
-          <div className="flex space-x-4">
-            <FaFacebookF className="text-white hover:text-pink-600 cursor-pointer" />
-            <FaInstagram className="text-white hover:text-pink-600 cursor-pointer" />
-            <FaTwitter className="text-white hover:text-pink-600 cursor-pointer" />
-          </div>
-        </div>
-
-        <div>
-          <h3 className="font-semibold mb-4">Informação</h3>
-          <ul className="space-y-2 text-sm text-gray-400">
-            <li><a href="#">Sobre Drip Store</a></li>
-            <li><a href="#">Segurança</a></li>
-            <li><a href="#">Wishlist</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Trabalhe conosco</a></li>
-            <li><a href="#">Meus Pedidos</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="font-semibold mb-4">Categorias</h3>
-          <ul className="space-y-2 text-sm text-gray-400">
-            <li><a href="#">Camisetas</a></li>
-            <li><a href="#">Calças</a></li>
-            <li><a href="#">Bonés</a></li>
-            <li><a href="#">Headphones</a></li>
-            <li><a href="#">Tênis</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="font-semibold mb-4">Contato</h3>
-          <p className="text-sm text-gray-400 leading-relaxed">
-            Av. Santos Dumont, 1510 - 1 andar - Aldeota, Fortaleza - CE, 60150-161
-          </p>
-          <p className="text-sm text-gray-400 mt-2">(85) 3051-3411</p>
+  <footer className="bg-[#111] text-white px-6 md:px-20 py-10">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+      <div>
+        <Link to="/" onClick={handleGoHome}>
+        <img src={logoFooter} alt="Drip Store" className="h-8 mb-4" />
+        </Link>
+        <p className="text-sm text-gray-400 mb-4">E-commerce demonstrativo desenvolvido em React, com catálogo integrado à API, autenticação e carrinho de compras.</p>
+        <div className="flex space-x-4" aria-label="Redes sociais do projeto">
+          <a href="https://github.com/PauloVianaTech/drip-store" target="_blank" rel="noreferrer" aria-label="Repositório no GitHub"><FaGithub className="text-white hover:text-pink-600 transition" /></a>
+          <a href="https://www.instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><FaInstagram className="text-white hover:text-pink-600 transition" /></a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedinIn className="text-white hover:text-pink-600 transition" /></a>
         </div>
       </div>
-
-      <div className="border-t border-gray-700 mt-10 pt-6 text-center text-xs text-gray-500">
-        © 2022 Digital College
+      <div>
+        <h3 className="font-semibold mb-4">Navegação</h3>
+        <ul className="space-y-2 text-sm text-gray-400">
+          <li><Link to="/" className="hover:text-white">Início</Link></li>
+          <li><Link to="/produtos" className="hover:text-white">Produtos</Link></li>
+          <li><Link to="/categorias" className="hover:text-white">Categorias</Link></li>
+          <li><Link to="/pedidos" className="hover:text-white">Meu carrinho</Link></li>
+        </ul>
       </div>
-    </footer>
+      <div>
+        <h3 className="font-semibold mb-4">Categorias</h3>
+        <ul className="space-y-2 text-sm text-gray-400">
+          {['Camisetas', 'Calças', 'Bonés', 'Headphones', 'Tênis'].map((category) => <li key={category}><Link to={`/produtos?categoria=${category}`} className="hover:text-white">{category}</Link></li>)}
+        </ul>
+      </div>
+      <div>
+        <h3 className="font-semibold mb-4">Sobre o projeto</h3>
+        <p className="text-sm text-gray-400 leading-relaxed">Projeto de portfólio voltado à prática de interfaces responsivas e integração entre frontend e backend.</p>
+      </div>
+    </div>
+    <div className="border-t border-gray-700 mt-10 pt-6 text-center text-xs text-gray-500">© {new Date().getFullYear()} Drip Store — Projeto de portfólio.</div>
+  </footer>
   );
 };
 

@@ -1,4 +1,4 @@
-import { useStates } from 'react';
+import { useState } from 'react';
 
 const ProductOptions = ({ options, radius, shape, type })=>{
 

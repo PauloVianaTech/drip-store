@@ -204,8 +204,8 @@ export const products = [
     image: "https://stamp.jetassets.com.br/produto/TS1722_2024-09-19_14_33_09_0.jpeg",
     images: [
         { src: "https://stamp.jetassets.com.br/produto/TS1722_2024-09-19_14_33_09_0.jpeg" },
-        { src: "https://exemplo.com/camisa_costas.jpg" },
-        { src: "https://exemplo.com/camisa_detalhe.jpg" }
+        { src: "https://stamp.jetassets.com.br/produto/TS1722_2024-09-19_14_33_09_0.jpeg" },
+        { src: "https://stamp.jetassets.com.br/produto/TS1722_2024-09-19_14_33_09_0.jpeg" }
     ],
     category: "Camisetas",
     gender: "Unissex",
@@ -228,8 +228,8 @@ export const products = [
     image: "https://oqvestir.fbitsstatic.net/img/p/calca-feminina-mom-jeans-azul-178657/463134.jpg?w=1600&h=2133&v=202501231556",
     images: [
         { src: "https://oqvestir.fbitsstatic.net/img/p/calca-feminina-mom-jeans-azul-178657/463134.jpg?w=1600&h=2133&v=202501231556" },
-        { src: "https://exemplo.com/calca_costas.jpg" },
-        { src: "https://exemplo.com/calca_detalhe.jpg" }
+        { src: "https://oqvestir.fbitsstatic.net/img/p/calca-feminina-mom-jeans-azul-178657/463134.jpg?w=1600&h=2133&v=202501231556" },
+        { src: "https://oqvestir.fbitsstatic.net/img/p/calca-feminina-mom-jeans-azul-178657/463134.jpg?w=1600&h=2133&v=202501231556" }
     ],
     category: "Calças",
     gender: "Feminino",
@@ -252,8 +252,8 @@ export const products = [
     image: "https://http2.mlstatic.com/D_NQ_NP_662323-MLB78900818559_092024-O-bone-mst-brim-6-gomos-adulto.webp",
     images: [
         { src: "https://http2.mlstatic.com/D_NQ_NP_662323-MLB78900818559_092024-O-bone-mst-brim-6-gomos-adulto.webp" },
-        { src: "https://exemplo.com/bone_lado.jpg" },
-        { src: "https://exemplo.com/bone_tras.jpg" }
+        { src: "https://http2.mlstatic.com/D_NQ_NP_662323-MLB78900818559_092024-O-bone-mst-brim-6-gomos-adulto.webp" },
+        { src: "https://http2.mlstatic.com/D_NQ_NP_662323-MLB78900818559_092024-O-bone-mst-brim-6-gomos-adulto.webp" }
     ],
     category: "Bonés",
     gender: "Unissex",
@@ -276,8 +276,8 @@ export const products = [
     image: "https://m.media-amazon.com/images/I/61BDf8KO8AL.__AC_SX300_SY300_QL70_ML2_.jpg",
     images: [
         { src: "https://m.media-amazon.com/images/I/61BDf8KO8AL.__AC_SX300_SY300_QL70_ML2_.jpg" },
-        { src: "https://exemplo.com/headphone_lado.jpg" },
-        { src: "https://exemplo.com/headphone_dobrado.jpg" }
+        { src: "https://m.media-amazon.com/images/I/61BDf8KO8AL.__AC_SX300_SY300_QL70_ML2_.jpg" },
+        { src: "https://m.media-amazon.com/images/I/61BDf8KO8AL.__AC_SX300_SY300_QL70_ML2_.jpg" }
     ],
     category: "Headphones",
     gender: "Unissex",

@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import SafeImage from '../components/safeImage';
 
 const categorias = [
   {
@@ -44,11 +45,7 @@ const CategoriasPage = () => {
             onClick={() => handleClick(cat.nome)}
             className="bg-white rounded-2xl shadow-lg hover:shadow-2xl cursor-pointer transition-transform duration-300 hover:scale-105 overflow-hidden flex flex-col"
           >
-            <img
-              src={cat.imagem}
-              alt={cat.nome}
-              className="w-full h-72 sm:h-80 md:h-96 object-cover rounded-t-2xl"
-            />
+            <SafeImage src={cat.imagem} alt={cat.nome} className="w-full h-72 sm:h-80 md:h-96 object-cover rounded-t-2xl" />
             <div className="p-5 text-center">
               <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 hover:text-pink-600 transition-colors">
                 {cat.nome}

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useCart } from '../../contexts/cartContext';
+import SafeImage from '../safeImage';
 
 const ProductListingList = ({ products }) => {
   const { cartItems, addToCart, removeFromCart } = useCart();
@@ -43,11 +44,7 @@ const ProductListingList = ({ products }) => {
                 </div>
               )}
               <div className="h-56 w-full flex items-center justify-center p-4">
-                <img 
-                  src={product.image} 
-                  alt={product.name} 
-                  className="max-h-full max-w-full object-contain" 
-                />
+                <SafeImage src={product.image} alt={product.name} className="max-h-full max-w-full object-contain" />
               </div>
             </Link>
             

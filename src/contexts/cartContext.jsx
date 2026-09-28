@@ -1,14 +1,26 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 export const CartContext = createContext();
 
 export const useCart = () => useContext(CartContext);
 
+const getSalePrice = (product) => {
+  if (typeof product?.priceDiscount === 'number' && product.priceDiscount < product.price) {
+    return product.priceDiscount;
+  }
+
+  return product?.price ?? 0;
+};
+
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(() => {
-    const stored = localStorage.getItem('cartItems');
-    return stored ? JSON.parse(stored) : [];
+    try {
+      const stored = localStorage.getItem('cartItems');
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
+    }
   });
 
   useEffect(() => {
@@ -16,11 +28,15 @@ export const CartProvider = ({ children }) => {
   }, [cartItems]);
 
   const addToCart = (product) => {
-    setCartItems((prev) => [...prev, product]);
+    setCartItems((previousItems) => (
+      previousItems.some((item) => item.id === product.id)
+        ? previousItems
+        : [...previousItems, product]
+    ));
   };
 
   const removeFromCart = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+    setCartItems((previousItems) => previousItems.filter((item) => item.id !== id));
   };
 
   const clearCart = () => {
@@ -28,14 +44,15 @@ export const CartProvider = ({ children }) => {
     localStorage.removeItem('cartItems');
   };
 
-  const isInCart = (id) => cartItems.some(item => item.id === id);
+  const isInCart = (id) => cartItems.some((item) => item.id === id);
 
   const toggleCartItem = (product) => {
     if (isInCart(product.id)) {
       removeFromCart(product.id);
-    } else {
-      addToCart(product);
+      return;
     }
+
+    addToCart(product);
   };
 
   return (
@@ -45,7 +62,8 @@ export const CartProvider = ({ children }) => {
       removeFromCart,
       clearCart,
       isInCart,
-      toggleCartItem
+      toggleCartItem,
+      getSalePrice,
     }}>
       {children}
     </CartContext.Provider>

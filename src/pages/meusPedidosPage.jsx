@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { FaQrcode, FaMoneyBillAlt, FaCreditCard } from 'react-icons/fa';
 
 const MeusPedidosPage = () => {
-  const { cartItems, removeFromCart } = useCart();
+  const { cartItems, removeFromCart, clearCart, getSalePrice } = useCart();
   const [itemToDelete, setItemToDelete] = useState(null);
   const [showPaymentOptions, setShowPaymentOptions] = useState(false);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false); 
@@ -24,16 +24,14 @@ const MeusPedidosPage = () => {
 
   const handleSimulatePayment = () => {
     setShowPaymentOptions(false);
+    clearCart();
     setShowSuccessAlert(true);
     setTimeout(() => {
       setShowSuccessAlert(false);
     }, 3000);
   };
 
-  const total = cartItems.reduce((sum, item) => {
-    if (!item || typeof item.price !== 'number') return sum;
-    return sum + item.price * 0.7; // com desconto de 30%
-  }, 0);
+  const total = cartItems.reduce((sum, item) => sum + getSalePrice(item), 0);
 
   return (
     <div className="px-10 py-6 relative">
@@ -54,10 +52,10 @@ const MeusPedidosPage = () => {
             {cartItems.map((item, index) => (
               <li key={item?.id ?? index} className="border p-4 rounded shadow-sm bg-white flex justify-between items-center">
                 <div>
-                  <p className="font-medium">{item?.title || "Produto sem título"}</p>
+                  <p className="font-medium">{item?.name || item?.title || "Produto sem título"}</p>
                   <p className="text-sm text-gray-500">{item?.category || "Categoria desconhecida"}</p>
                   <span className="font-bold text-primary">
-                    R${item?.price ? (item.price * 0.7).toFixed(2) : "0.00"}
+                    R$ {getSalePrice(item).toFixed(2)}
                   </span>
                 </div>
                 <button
