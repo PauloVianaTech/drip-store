@@ -15,7 +15,7 @@ const Footer = () => {
         </Link>
         <p className="text-sm text-gray-400 mb-4">E-commerce demonstrativo desenvolvido em React, com catálogo integrado à API, autenticação e carrinho de compras.</p>
         <div className="flex space-x-4" aria-label="Redes sociais do projeto">
-          <a href="https://github.com/PauloVianaTech/drip-store" target="_blank" rel="noreferrer" aria-label="Repositório no GitHub"><FaGithub className="text-white hover:text-pink-600 transition" /></a>
+          <a href="https://github.com/PauloVianaTech/ecommerce-drip-store" target="_blank" rel="noreferrer" aria-label="Repositório no GitHub"><FaGithub className="text-white hover:text-pink-600 transition" /></a>
           <a href="https://www.instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram"><FaInstagram className="text-white hover:text-pink-600 transition" /></a>
           <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><FaLinkedinIn className="text-white hover:text-pink-600 transition" /></a>
         </div>

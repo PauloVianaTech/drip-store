@@ -29,8 +29,8 @@ Frontend de uma loja virtual desenvolvido com React e Vite. A aplicação aprese
 ## Instalação
 
 ```bash
-git clone https://github.com/PauloVianaTech/drip-store.git
-cd drip-store
+git clone https://github.com/PauloVianaTech/ecommerce-drip-store.git
+cd ecommerce-drip-store
 npm install
 ```
 
