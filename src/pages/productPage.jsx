@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import ProductListingList from '../components/AbaProdutos/productListingList';
 import { products as fallbackProducts } from '../data/products';
-import { getProducts } from '../services/catalog';
+import { getCategories, getProducts } from '../services/catalog';
 
 const ProductPage = () => {
   const [order, setOrder] = useState('menor-preco');
   const [products, setProducts] = useState(fallbackProducts);
+  const [categories, setCategories] = useState([]);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const categoryFromUrl = searchParams.get('categoria') || '';
@@ -15,19 +16,29 @@ const ProductPage = () => {
     categoryFromUrl ? [categoryFromUrl.charAt(0).toUpperCase() + categoryFromUrl.slice(1).toLowerCase()] : []
   ));
 
+  const categoryIds = categories
+    .filter((category) => filters.includes(category.nome))
+    .map((category) => category.id)
+    .join(',');
+
   useEffect(() => {
-    getProducts()
-      .then(({ data }) => {
-        if (data.length > 0) setProducts(data);
-      })
-      .catch(() => {
-        // O catálogo local mantém a demonstração utilizável sem a API.
-      });
+    getCategories().then(setCategories).catch(() => setCategories([]));
   }, []);
+
+  useEffect(() => {
+    const params = {
+      ...(searchQuery ? { match: searchQuery } : {}),
+      ...(categoryIds ? { category_ids: categoryIds } : {}),
+    };
+
+    getProducts(params)
+      .then(({ data }) => setProducts(data))
+      .catch(() => setProducts(fallbackProducts));
+  }, [searchQuery, categoryIds]);
 
   const allFilters = [
     { label: 'Marca', options: ['Adidas', 'Balenciaga', 'K-Swiss', 'Nike', 'Puma', 'Stamp', 'OQVestir', 'JBL', 'MST'] },
-    { label: 'Categoria', options: ['Camisetas', 'Calças', 'Bonés', 'Headphones', 'Tênis'] },
+    { label: 'Categoria', options: categories.map((category) => category.nome) },
     { label: 'Gênero', options: ['Masculino', 'Feminino', 'Unissex'] },
     { label: 'Estado', options: ['Novo', 'Usado'] },
   ];

@@ -61,3 +61,7 @@ export const getProductById = async (id) => {
   const { data } = await api.get(`/produto/${id}`);
   return normalizeProduct(data);
 };
+export const getCategories = async () => {
+  const { data } = await api.get('/categoria/pesquisa', { params: { limit: -1 } });
+  return data.data || [];
+};
